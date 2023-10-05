@@ -30,6 +30,6 @@ function fromInc($name) {
 }
 
 function fromPage($name) {
-    $_GET["page"] = $name;
+    $_GET["cihanlebg"] = $name;
     include "./templates/includes/" . $name . ".inc.php";
 }
