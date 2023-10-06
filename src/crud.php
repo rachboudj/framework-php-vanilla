@@ -13,10 +13,23 @@ $data = $statement->fetchAll(PDO::FETCH_ASSOC);
 dd($data);
 
 // fonction create
-$statement = $connection->prepare("INSERT INTO `contacts` (`name`, `surname`, `status`) VALUES (?, ?, 'online') ");
-$statement->bindParam(1,$_GET["name"]);
-$statement->bindParam(2,$_GET["surname"]);
-$statement->execute();
+// $statement = $connection->prepare("INSERT INTO `contacts` (`name`, `surname`, `status`) VALUES (?, ?, 'online') ");
+// $statement->bindParam(1,$_GET["name"]);
+// $statement->bindParam(2,$_GET["surname"]);
+// $statement->execute();
+
+function requeteCreate($connection, $name, $surname){
+    $statement = $connection->prepare("INSERT INTO `contacts` (`name`, `surname`, `status`) VALUES (?, ?, 'online') ");
+    $statement->bindParam(1,$name);
+    $statement->bindParam(2,$surname);
+    $statement->execute();
+}
+
+$nom = "Mouloud";
+$surnom = "Achour";
+
+requeteCreate($connection, $nom, $surnom);
+
 
 //fonction delete
 function requeteDelete($connection, $id)
@@ -36,9 +49,12 @@ requeteDelete($connection, $num);
 // $statement->execute();
 
 
-//fonction update
+function requeteUpdate($connection, $id)
+{
+    $statement = $connection->prepare("UPDATE `contacts` SET `status` = 'offline' WHERE id = ?");
+    $statement->bindParam(1, $id);
+    $statement->execute();
+}
 
-$statement = $connection->prepare("UPDATE `contacts` SET `status` = 'offline' WHERE id = ?");
-$id = 2;
-$statement->bindParam(1, $id);
-$statement->execute();
+$id2 = 10;
+requeteUpdate($connection, $id2);
