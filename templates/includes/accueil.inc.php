@@ -1,11 +1,4 @@
-<?php 
-
-ob_start();
-
-?>
-
-<h1>Accueil</h1>
-
-<?php 
-$pageContent = ob_get_clean();
-?>
+<h1>Bienvenue sur mon site web !</h1>
+<?php
+include './templates/includes/form.inc.php';
+include './templates/includes/listUsers.inc.php';
